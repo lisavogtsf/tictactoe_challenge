@@ -6,8 +6,9 @@ app.set('view engine', 'ejs');
 
 // set up base route
 app.get('/', function (req, res){
+	console.log("Request: *******************************\n", req);
+
 	res.send("<h1>do you want to play a game?</h1><br><h2>>_</h2>");
-	res.render('index');
 });
 
 // 'tictactoe @otherplayer' route to start the game with other player
