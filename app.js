@@ -6,9 +6,18 @@ app.set('view engine', 'ejs');
 
 // set up base route
 app.get('/', function (req, res){
-	console.log("Request: *******************************\n", req);
+	console.log("Request headers: *******************************\n", req.headers);
 
 	res.send("<h1>do you want to play a game?</h1><br><h2>>_</h2>");
+});
+
+// set up base route
+app.get('/:name?', function (req, res){
+	console.log("Request headers: *******************************\n", req.headers);
+	console.log("Request params: *******************************\n", req.params);
+	var name = req.params.name;
+
+	res.send("<h1>" + name + ", do you want to play a game?</h1><br><h2>>_</h2>");
 });
 
 // 'tictactoe @otherplayer' route to start the game with other player
