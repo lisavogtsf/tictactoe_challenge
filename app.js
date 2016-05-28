@@ -1,27 +1,14 @@
 var express = require('express');
 var app = express();
 
-// variables for reuse
-var pageTitle = "";
-
 // set up view engine
 app.set('view engine', 'ejs');
 
-
 // set up base route
 app.get('/', function (req, res){
-	// res.send("do you want to play a game?");
-	pageTitle = "TIC TAC TOE";
-	res.render('index', {pageTitle: pageTitle});
+	res.send("<h1>do you want to play a game?</h1><br><h2>>_</h2>");
+	res.render('index');
 });
-
-app.get('/tack', function (req, res){
-	res.send("do you want to play a game?");
-	pageTitle = "TIC TAC TOE";
-	res.render('index', {pageTitle: pageTitle});
-});
-
-
 
 // 'tictactoe @otherplayer' route to start the game with other player
 	// is this coming from a valid account?
