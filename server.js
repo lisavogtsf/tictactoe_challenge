@@ -16,7 +16,7 @@ app.get('/:name?', function (req, res){
 	console.log("Request headers: *******************************\n", req.headers);
 	console.log("Request params: *******************************\n", req.params);
 
-	res.send("sending this right back to Slack, having logged headers, " + req.headers + " and params, " + req.params);
+	res.send("sending this right back to Slack, having logged headers, " + JSON.parse(req.headers) + " and params, " + JSON.parse(req.params));
 });
 
 // 'tictactoe @otherplayer' route to start the game with other player
