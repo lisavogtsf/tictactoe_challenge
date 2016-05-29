@@ -1,12 +1,18 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 
 // set up view engine
 app.set('view engine', 'ejs');
 
+// use body-parser 
+app.use(bodyParser.urlencoded({extended: false}));
+
 // set up base route
 app.get('/', function (req, res){
+	
 	console.log("Request headers: *******************************\n", req.headers);
+	console.log("request body: ", req.body);
 
 	res.send("<h1>do you want to play a game?</h1><br><h2>>_</h2>");
 });
