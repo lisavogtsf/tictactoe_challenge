@@ -15,8 +15,18 @@ app.get('/', function (req, res){
 app.get('/:name?', function (req, res){
 	console.log("Request headers: *******************************\n", req.headers);
 	console.log("Request params: *******************************\n", req.params);
+	var headerString = "";
+	var paramString = "";
 
-	res.send("sending this right back to Slack, having logged headers, " + JSON.parse(req.headers) + " and params, " + JSON.parse(req.params));
+	for (var key in req.headers) {
+		headerString += "----" + key + ": " + req.headers[key] + "<br>";
+	}
+
+	for (key in req.params) {
+		paramString += "----" + key + ": " + req.params[key] + "<br>";
+	}
+
+	res.send("sending this right back to Slack, having logged headers, <br>" + headerString + " and params, <br>" + paramString);
 });
 
 // 'tictactoe @otherplayer' route to start the game with other player
