@@ -11,7 +11,7 @@ app.get('/', function (req, res){
 	res.send("<h1>do you want to play a game?</h1><br><h2>>_</h2>");
 });
 
-// set up base route
+// set up route to handle parameters
 app.get('/:name?', function (req, res){
 	console.log("Request headers: *******************************\n", req.headers);
 	console.log("Request params: *******************************\n", req.params);
@@ -27,6 +27,12 @@ app.get('/:name?', function (req, res){
 	}
 
 	res.send("sending this right back to Slack, having logged headers, <br>" + headerString + " and params, <br>" + paramString);
+});
+
+app.post('/', function(req, res){
+	console.log("POST     POST     POST     POST");
+	console.log("Request headers: *******************************\n", req.headers);
+	console.log("Request params: *******************************\n", req.params);
 });
 
 // 'tictactoe @otherplayer' route to start the game with other player
