@@ -15,22 +15,8 @@ app.get('/', function (req, res){
 app.get('/:name?', function (req, res){
 	console.log("Request headers: *******************************\n", req.headers);
 	console.log("Request params: *******************************\n", req.params);
-	var name = req.params.name;
-	var htmlString = "";
 
-	// display name URL paramter
-	htmlString += "<h1>The parameter you sent was: " + name + "</h1><br>";
-
-	// display headers
-	htmlString += "<h2>Headers: </h2><ol>";
-	// get each header item
-	for (var key in req.headers) {
-		htmlString += "<li>" + key + "<ul><li>" + req.headers[key] + "</li></ul></li>" 
-	}
-	htmlString += "</ol>"
-// "<h2>params: " + req.params + "</h2>""
-
-	res.send(htmlString);
+	res.send("sending this right back to Slack, having logged headers, " + req.headers + " and params, " + req.params);
 });
 
 // 'tictactoe @otherplayer' route to start the game with other player
