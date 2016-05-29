@@ -21,6 +21,7 @@ app.get('/', function (req, res){
 app.get('/:name?', function (req, res){
 	console.log("Request headers: *******************************\n", req.headers);
 	console.log("Request params: *******************************\n", req.params);
+	console.log("request body: ", req.body);
 	var headerString = "";
 	var paramString = "";
 
@@ -39,6 +40,7 @@ app.post('/', function(req, res){
 	console.log("POST     POST     POST     POST");
 	console.log("Request headers: *******************************\n", req.headers);
 	console.log("Request params: *******************************\n", req.params);
+	console.log("request body: ", req.body);
 });
 
 // 'tictactoe @otherplayer' route to start the game with other player
