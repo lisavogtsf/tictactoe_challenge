@@ -1,47 +1,23 @@
 var express = require('express');
-var bodyParser = require('body-parser');
+var ejs = require('ejs');
+// var bodyParser = require('body-parser');
 var app = express();
+
+// use body-parser 
+// app.use(bodyParser.urlencoded({extended: false}));
 
 // set up view engine
 app.set('view engine', 'ejs');
 
-// use body-parser 
-app.use(bodyParser.urlencoded({extended: false}));
+// serve static content
+app.use(express.static(__dirname + '/public'));
 
 // set up base route
 app.get('/', function (req, res){
 	
-	console.log("Request headers: *******************************\n", req.headers);
-	console.log("request body: ", req.body);
-
-	res.send("<h1>do you want to play a game?</h1><br><h2>>_</h2>");
+	res.render('index');
 });
 
-// set up route to handle parameters
-app.get('/:name?', function (req, res){
-	console.log("Request headers: *******************************\n", req.headers);
-	console.log("Request params: *******************************\n", req.params);
-	console.log("request body: ", req.body);
-	var headerString = "";
-	var paramString = "";
-
-	for (var key in req.headers) {
-		headerString += "----" + key + ": " + req.headers[key] + "<br>";
-	}
-
-	for (key in req.params) {
-		paramString += "----" + key + ": " + req.params[key] + "<br>";
-	}
-
-	res.send("sending this right back to Slack, having logged headers, <br>" + headerString + " and params, <br>" + paramString);
-});
-
-app.post('/', function(req, res){
-	console.log("POST     POST     POST     POST");
-	console.log("Request headers: *******************************\n", req.headers);
-	console.log("Request params: *******************************\n", req.params);
-	console.log("request body: ", req.body);
-});
 
 // 'tictactoe @otherplayer' route to start the game with other player
 	// is this coming from a valid account?
