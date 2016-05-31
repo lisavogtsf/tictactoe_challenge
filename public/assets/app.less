@@ -10,29 +10,29 @@ h1 {
 	text-align: center;
 }
 
-article#board {
+article#game-stage {
 	margin: 0 auto;
 	background-color: white;
 
-	ul.grid-row {
-		background-color: khaki;
+	ul#board {
 		display: block;
-		float: left;
-		height: 100px;
-		width: 100%;
+		margin: 20px auto;
+		padding: 0;
+		width: 480px;
 
 		li {
-			background-color: teal;
-			display: inherit;
-			display: flex;
-			height: 100%;
-			width: 33%;
+			background-color: green;
+			display: block;
+			width: 160px;
+			height: 160px;
+			float: left;
 
 			a.square {
-				display: inherit;
-				background-color: purple;
-				width: 20px;
-				height: 20px;
+				display: block;
+				background-color: white;
+				border: 10px solid darkslategrey;
+				width: 140px;
+				height: 140px;
 			}
 		}
 	}
