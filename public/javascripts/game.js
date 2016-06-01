@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function (){
 	var makeDOMMove = function (squareId) {
 		var element = document.querySelector(".square" + squareId);
 		var classes = element.classList;
+		classes.add("played");
 		classes.add(currentPlayer.moveClass);
 	}
 
@@ -41,21 +42,28 @@ document.addEventListener('DOMContentLoaded', function (){
 		var squareClasses;
 		var squareId;
 		var clickedSquareId;
-		// put event listeners on board DOM elements
-		for (var i = 0; i < GAME_SIZE; i++) {
-			squareId = '.square' + i;
-			square = document.querySelector(squareId);
+		var squareElement;
 
-			square.addEventListener('click', function(e) {
+		var clickOnSquare = function (e) {
 				// when elements are clicked on, pass the square information on
 				squareClasses = e.target.classList.value;
+				squareElement = e.target;
 				clickedSquareId = squareClasses[squareClasses.search(/[0-9]/)];
 
 				// makeMove in logic then in view
 				if (makeMove(clickedSquareId)) {
+					console.log("squareElement ", squareElement);
+					// remove event listener once that square has been played
+					squareElement.removeEventListener("click", clickOnSquare);
 					makeDOMMove(clickedSquareId);
 				}
-			});
+			};
+
+		// put event listeners on board DOM elements
+		for (var i = 0; i < GAME_SIZE; i++) {
+			squareId = '.square' + i;
+			square = document.querySelector(squareId);
+			square.addEventListener('click', clickOnSquare);
 		}
 	}
 
