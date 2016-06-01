@@ -1,36 +1,97 @@
-// 'tictactoe @otherplayer' route to start the game with other player
-	// is this coming from a valid account?
-	// is any game currently running?
+var GAME_SIZE = 9;
+var squares = [];
+var currentPlayer;
+var player1;
+var player2;
 
-	// start logic for a game between @user (info in headers?) and @otherplayer
-	// set both scores to 0
-	// decide who plays first
+document.addEventListener('DOMContentLoaded', function (){
 
-	// redirect to show
+	// make a move
+	var makeMove = function (squareId) {
+		squares[squareId] = currentPlayer.id;
+		console.log("makeMove", squareId);
+		console.log(squares);
+
+		// advance player
+		if (currentPlayer === player1) {
+			currentPlayer = player2;
+		} else {
+			currentPlayer = player1;
+		}
+
+		return true;
+	}
+
+	var makeDOMMove = function (squareId) {
+		var element = document.querySelector(".square" + squareId);
+		var classes = element.classList;
+		classes.add(currentPlayer.moveClass);
+	}
+
+	// initialize board squares to null
+	var setUpBoard = function () {
+		for (var i = 0; i < GAME_SIZE; i++) {
+			squares[i] = null;
+		}
+	}
+
+	var setUpDOMBoard = function () {
+		// get board dom elements
+		var square;
+		var squareClasses;
+		var squareId;
+		var clickedSquareId;
+		// put event listeners on board DOM elements
+		for (var i = 0; i < GAME_SIZE; i++) {
+			squareId = '.square' + i;
+			square = document.querySelector(squareId);
+
+			square.addEventListener('click', function(e) {
+				// when elements are clicked on, pass the square information on
+				squareClasses = e.target.classList.value;
+				clickedSquareId = squareClasses[squareClasses.search(/[0-9]/)];
+
+				// makeMove in logic then in view
+				if (makeMove(clickedSquareId)) {
+					makeDOMMove(clickedSquareId);
+				}
+			});
+		}
+	}
+
+	var setUpPlayers = function () {
+		
+		player1 = {
+			name: "Player One",
+			id: 1,
+			moveClass: "player1"
+		}
+
+		player2 = {
+			name: "Player Two",
+			id: 2,
+			moveClass: "player2"
+		}
+
+		currentPlayer = player1;
+	}
+
+	var startNewGame = function () {
+
+		setUpPlayers();
+
+		setUpBoard();
+		setUpDOMBoard();
+
+	};
+
+	// listen for start
+	var startButton = document.querySelector('#startNewGame');
+	startButton.addEventListener('click', function () {
+		startNewGame();
+	});
 
 
-// 'show' shows the current game board (starting the game will redirect to this)
-	// any player can do this
-	// is there a game currently running?
-
-	// displays the current state of the board
-	// displays the two player user names
-	// displays scores
-	// displays whose turn it is
-
-// 'go #' make a move in space #
-	// is this coming from a valid account?
-	// is this a valid move
-
-	// place either X or O in space, changes board state
-
-	// checks for game over -- win/loss/tie
-		// are any playable spots left?
-		// any three in a row created by last move?
-	
-	// advance player
 
 
-// 'quit' end game 
-	// is this coming from a valid account?
-	// clears out game
+});
