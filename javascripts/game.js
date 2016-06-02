@@ -1,105 +1,127 @@
+// Tic Tac Toe game
+// designed to be view agnostic
+
 var GAME_SIZE = 9;
 var squares = [];
 var currentPlayer;
 var player1;
 var player2;
+var turn;
+var messages = "";
+var gameOverWinMsg = " Wins -- Game Over";
+var gameOverDrawMsg = "Draw -- Game Over";
 
-document.addEventListener('DOMContentLoaded', function (){
-
-	// make a move
-	var makeMove = function (squareId) {
-		squares[squareId] = currentPlayer.id;
-
-		// check for game over
-
-		// advance player
-		if (currentPlayer === player1) {
-			currentPlayer = player2;
-		} else {
-			currentPlayer = player1;
-		}
-
+var playerWins = function () {
+	// brute force
+	if ((squares[0] === currentPlayer.id &&
+		squares[1] === currentPlayer.id &&
+		squares[2] === currentPlayer.id) ||
+		(squares[3] === currentPlayer.id &&
+			squares[4] === currentPlayer.id &&
+			squares[5] === currentPlayer.id) ||
+		(squares[6] === currentPlayer.id &&
+			squares[7] === currentPlayer.id &&
+			squares[8] === currentPlayer.id)
+		) {
+		// horizontal rows
+		return true;
+	} else if ((squares[0] === currentPlayer.id &&
+		squares[3] === currentPlayer.id &&
+		squares[6] === currentPlayer.id) ||
+		(squares[1] === currentPlayer.id &&
+			squares[4] === currentPlayer.id &&
+			squares[7] === currentPlayer.id) ||
+		(squares[2] === currentPlayer.id &&
+			squares[5] === currentPlayer.id &&
+			squares[8] === currentPlayer.id)
+		) {
+		// vertical rows
+		return true;
+	} else if ((squares[0] === currentPlayer.id &&
+		squares[4] === currentPlayer.id &&
+		squares[8] === currentPlayer.id) ||
+		(squares[2] === currentPlayer.id &&
+			squares[4] === currentPlayer.id &&
+			squares[6] === currentPlayer.id)
+		) {
+		// diagonals
 		return true;
 	}
+};
 
-	var makeDOMMove = function (squareId) {
-		var element = document.querySelector(".square" + squareId);
-		var classes = element.classList;
-		classes.add("played");
-		classes.add(currentPlayer.moveClass);
+var isGameOver = function () {
+	console.log("turn in isGameOver", turn);
+	if (playerWins()) {
+
+		messages = currentPlayer.name + gameOverWinMsg;
+		return true;
+	} else if (turn === GAME_SIZE) {
+		// filled up board with no win
+		messages = gameOverDrawMsg;
+		return true;
+	} 
+	// game is not over
+	return false;
+};
+
+// make a move
+var makeMove = function (squareId) {
+	// only able to click on available squares
+	// update internal squares
+	squares[squareId] = currentPlayer.id;
+	turn++;
+	console.log("makeMoveDOM", turn);
+
+	// check for game over
+	if (isGameOver()) {
+		// isGameOver will update messages itself
+		return false;
 	}
 
-	// initialize board squares to null
-	var setUpBoard = function () {
-		for (var i = 0; i < GAME_SIZE; i++) {
-			squares[i] = null;
-		}
-	}
-
-	var setUpDOMBoard = function () {
-		// get board dom elements
-		var square;
-		var squareClasses;
-		var squareId;
-		var clickedSquareId;
-		var squareElement;
-
-		var clickOnSquare = function (e) {
-				// when elements are clicked on, pass the square information on
-				squareClasses = e.target.classList.value;
-				squareElement = e.target;
-				clickedSquareId = squareClasses[squareClasses.search(/[0-9]/)];
-
-				// makeMove in logic then in view
-				if (makeMove(clickedSquareId)) {
-					// remove event listener once that square has been played
-					squareElement.removeEventListener("click", clickOnSquare);
-					makeDOMMove(clickedSquareId);
-				}
-			};
-
-		// put event listeners on board DOM elements
-		for (var i = 0; i < GAME_SIZE; i++) {
-			squareId = '.square' + i;
-			square = document.querySelector(squareId);
-			square.addEventListener('click', clickOnSquare);
-		}
-	}
-
-	var setUpPlayers = function () {
-		
-		player1 = {
-			name: "Player One",
-			id: 1,
-			moveClass: "player1"
-		}
-
-		player2 = {
-			name: "Player Two",
-			id: 2,
-			moveClass: "player2"
-		}
-
+	// advance player
+	if (currentPlayer === player1) {
+		currentPlayer = player2;
+	} else {
 		currentPlayer = player1;
 	}
 
-	var startNewGame = function () {
+	return true;
+};
 
-		setUpPlayers();
+// initialize board squares to null
+var setUpBoard = function () {
+	console.log("setUpBoard");
+	for (var i = 0; i < GAME_SIZE; i++) {
+		squares[i] = null;
+	}
+};
 
-		setUpBoard();
-		setUpDOMBoard();
+var setUpPlayers = function () {
+	console.log("setUpPlayers");
+	player1 = {
+		name: "Player One",
+		id: 1,
+		moveClass: "player1"
+	}
 
-	};
+	player2 = {
+		name: "Player Two",
+		id: 2,
+		moveClass: "player2"
+	}
 
-	// // listen for start
-	// var startButton = document.querySelector('#startNewGame');
-	// startButton.addEventListener('click', function () {
-	// 	startNewGame();
-	// });
+};
 
-	// new game starts once DOM content has loaded
-	startNewGame();
+var setUpGameState = function () {
+	console.log("setUpGameState");
+	currentPlayer = player1;
+	turn = 0;
+};
 
-	
-});
+var startNewGame = function () {
+	console.log("startNewGame");
+	setUpGameState();
+};
+
+// clear game state 
+// reset
