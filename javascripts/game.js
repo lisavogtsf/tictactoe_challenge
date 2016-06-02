@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function (){
 	// make a move
 	var makeMove = function (squareId) {
 		squares[squareId] = currentPlayer.id;
-		console.log("makeMove", squareId);
-		console.log(squares);
+
+		// check for game over
 
 		// advance player
 		if (currentPlayer === player1) {
@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function (){
 
 				// makeMove in logic then in view
 				if (makeMove(clickedSquareId)) {
-					console.log("squareElement ", squareElement);
 					// remove event listener once that square has been played
 					squareElement.removeEventListener("click", clickOnSquare);
 					makeDOMMove(clickedSquareId);

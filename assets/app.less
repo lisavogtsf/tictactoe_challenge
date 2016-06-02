@@ -11,7 +11,8 @@ body {
 
 h1 {
 	font-family: 'Covered By Your Grace', sans-serif;
-	font-weight: bolder;
+	font-weight: bold;
+	font-size: 4em;
 	color: @primaryColor;
 	margin: 0 auto;
 	text-align: center;
@@ -34,7 +35,7 @@ article#game-stage {
 			height: 160px;
 			float: left;
 
-			input.square {
+			button.square {
 				display: block;
 				background-color: @neutralColor;
 				border: 10px solid @primaryColor;
@@ -44,15 +45,26 @@ article#game-stage {
 
 				&.played {
 					outline: none;
-					cursor: not-allowed;
+					pointer-events: none;
+					font-family: 'Covered By Your Grace', sans-serif;
+					font-size: 6em;
+					font-weight: bolder;
 				}
 
 				&.player1 {
-					background-color: @primaryColor;
+					background-color: @subtleColor;
+					color: @primaryColor;
+					&:before {
+						content: 'X';
+					}
 				}
 				&.player2 {
 					background-color: @accentColor;
-				}				
+					color: @primaryColor;
+					&:before {
+						content: 'O';
+					}
+				}
 			}
 		}
 	}
