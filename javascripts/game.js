@@ -93,13 +93,14 @@ document.addEventListener('DOMContentLoaded', function (){
 
 	};
 
-	// listen for start
-	var startButton = document.querySelector('#startNewGame');
-	startButton.addEventListener('click', function () {
-		startNewGame();
-	});
+	// // listen for start
+	// var startButton = document.querySelector('#startNewGame');
+	// startButton.addEventListener('click', function () {
+	// 	startNewGame();
+	// });
 
+	// new game starts once DOM content has loaded
+	startNewGame();
 
-
-
+	
 });
