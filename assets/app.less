@@ -1,11 +1,16 @@
+@primaryColor: dimgray;
+@accentColor: ivory;
+@neutralColor: gainsboro;
+@subtleColor: darkgray;
+
 body {
-	background-color: teal;
+	background: url(pin-crosshatch.jpg);
 }
 
 h1 {
 	font-family: sans-serif;
 	font-weight: bolder;
-	color: white;
+	color: @primaryColor;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -21,7 +26,7 @@ article#game-stage {
 		width: 480px;
 
 		li {
-			background-color: darkslategrey;
+			background-color: @primaryColor;
 			display: block;
 			width: 160px;
 			height: 160px;
@@ -29,8 +34,8 @@ article#game-stage {
 
 			input.square {
 				display: block;
-				background-color: white;
-				border: 10px solid darkslategrey;
+				background-color: @neutralColor;
+				border: 10px solid @primaryColor;
 				width: 150px;
 				height: 150px;
 				margin: 5px;
@@ -41,10 +46,10 @@ article#game-stage {
 				}
 
 				&.player1 {
-					background-color: red;
+					background-color: @primaryColor;
 				}
 				&.player2 {
-					background-color: blue;
+					background-color: @accentColor;
 				}				
 			}
 		}
