@@ -7,7 +7,7 @@ var currentPlayer;
 var player1;
 var player2;
 var turn;
-var messages = "";
+var messages = "(try using your keyboard -- tab and return)";
 var gameOverWinMsg = " Wins -- Game Over";
 var gameOverDrawMsg = "Draw -- Game Over";
 

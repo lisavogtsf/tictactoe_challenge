@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
 	var startNewGameDOM = function () {
 		console.log("startNewGameDOM");
+		updateMessagesDOM();
 		setUpPlayersDOM();
 		setUpBoardDOM();
 		startNewGame();
