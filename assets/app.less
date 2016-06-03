@@ -3,6 +3,9 @@
 @neutralColor: gainsboro;
 @subtleColor: darkgray;
 @singleSquareSize: 150px;
+@spacerSize: 5px;
+@singleSquareSizeSM: 100px;
+@spacerSizeSM: 5px;
 @import url(https://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
 
 
@@ -32,7 +35,6 @@ h2 {
 
 #game-stage {
 	margin: 0 auto;
-	background-color: white;
 	opacity: 1;
 	&.game-off {
 		pointer-events: none;
@@ -42,23 +44,23 @@ h2 {
 	ul#board {
 		display: block;
 		margin: 20px auto;
-		padding: 0;
-		width: (@singleSquareSize + 10px) * 3;
+		padding: @spacerSize;
+		width: (@singleSquareSize * 3) + (@spacerSize * 2);
+		height: (@singleSquareSize * 3) + @spacerSize * 2;
 
 		li {
 			background-color: @primaryColor;
 			display: block;
-			width: @singleSquareSize + 10px;
-			height: @singleSquareSize + 10px;
 			float: left;
 
 			button.square {
 				display: block;
 				background-color: @neutralColor;
-				border: 10px solid @primaryColor;
+				border: 0;
 				width: @singleSquareSize;
 				height: @singleSquareSize;
-				margin: 5px;
+				margin: 0;
+				padding: 0;
 
 				&.played {
 					pointer-events: none;
@@ -81,6 +83,22 @@ h2 {
 						content: 'O';
 					}
 				}
+				&.square0,
+				&.square1,
+				&.square3,
+				&.square4,
+				&.square6,
+				&.square7 {
+					margin-right: @spacerSize;
+				}
+				&.square3,
+				&.square4,
+				&.square5,
+				&.square6,
+				&.square7,
+				&.square8 {
+					margin-top: @spacerSize;
+				}
 			}
 		}
 	}
@@ -101,10 +119,37 @@ h2 {
 	h2 {
 		font-size: 1.5em;
 	}
-	button.square.played {
-		font-size: 4em;
+	#game-stage {
+		ul#board {
+			padding: @spacerSizeSM;
+			width: (@singleSquareSizeSM * 3) + (@spacerSizeSM * 2);
+			height: (@singleSquareSizeSM * 3) + @spacerSizeSM * 2;			
+
+			li {
+				button.square {
+					width: @singleSquareSizeSM;
+					height: @singleSquareSizeSM;
+					&.played {
+						font-size: 4em;
+					}
+					&.square0,
+					&.square1,
+					&.square3,
+					&.square4,
+					&.square6,
+					&.square7 {
+						margin-right: @spacerSizeSM;
+					}
+					&.square3,
+					&.square4,
+					&.square5,
+					&.square6,
+					&.square7,
+					&.square8 {
+						margin-top: @spacerSizeSM;
+					}
+				}
+			}
+		}
 	}
-
-
-
 }
