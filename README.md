@@ -1,2 +1,2 @@
-# tictactoe_express
-tic tac toe game using express server
+# tictactoe_challenge
+a simple game of tic tac toe 
