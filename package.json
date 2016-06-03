@@ -1,21 +1,21 @@
 {
-  "name": "tictactoe_express",
+  "name": "tictactoe_challenge",
   "version": "1.0.0",
-  "description": "tic-tac-toe using express server",
-  "main": "server.js",
+  "description": "tic-tac-toe with vanilla javascript",
+  "main": "javascripts/game.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lisavogtsf/tictactoe_express.git"
+    "url": "https://github.com/lisavogtsf/tictactoe_challenge.git"
   },
   "author": "Lisa Vogt",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lisavogtsf/tictactoe_express/issues"
+    "url": "https://github.com/lisavogtsf/tictactoe_challenge/issues"
   },
-  "homepage": "https://github.com/lisavogtsf/tictactoe_express",
+  "homepage": "https://github.com/lisavogtsf/tictactoe_challenge",
   "dependencies": {
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
