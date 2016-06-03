@@ -28,9 +28,12 @@ h2 {
 	height: 2em;
 }
 
-article#game-stage {
+#game-stage {
 	margin: 0 auto;
 	background-color: white;
+	&.game-off {
+		pointer-events: none;
+	}
 
 	ul#board {
 		display: block;
