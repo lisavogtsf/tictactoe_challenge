@@ -2,6 +2,7 @@
 @accentColor: ivory;
 @neutralColor: gainsboro;
 @subtleColor: darkgray;
+@singleSquareSize: 150px;
 @import url(https://fonts.googleapis.com/css?family=Covered+By+Your+Grace);
 
 
@@ -26,6 +27,7 @@ h2 {
 	font-weight: normal;
 	font-size: 2em;
 	height: 2em;
+	padding: 0 10px; 
 }
 
 #game-stage {
@@ -41,21 +43,21 @@ h2 {
 		display: block;
 		margin: 20px auto;
 		padding: 0;
-		width: 480px;
+		width: (@singleSquareSize + 10px) * 3;
 
 		li {
 			background-color: @primaryColor;
 			display: block;
-			width: 160px;
-			height: 160px;
+			width: @singleSquareSize + 10px;
+			height: @singleSquareSize + 10px;
 			float: left;
 
 			button.square {
 				display: block;
 				background-color: @neutralColor;
 				border: 10px solid @primaryColor;
-				width: 150px;
-				height: 150px;
+				width: @singleSquareSize;
+				height: @singleSquareSize;
 				margin: 5px;
 
 				&.played {
@@ -82,4 +84,27 @@ h2 {
 			}
 		}
 	}
+}
+
+
+/*****************************************/
+/* media queries */
+/* for screens less than 599 px etc */
+/*****************************************/
+
+
+/* very small screens */
+@media (max-width: 599px) {
+	h1 {
+		font-size: 3em;
+	}
+	h2 {
+		font-size: 1.5em;
+	}
+	button.square.played {
+		font-size: 4em;
+	}
+
+
+
 }
