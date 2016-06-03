@@ -1,5 +1,6 @@
 // Tic Tac Toe game
 // designed to be view agnostic
+// these methods will be called by the view code
 
 var GAME_SIZE = 9;
 var squares = [];
@@ -46,13 +47,14 @@ var playerWins = function () {
 		) {
 		// diagonals
 		return true;
+	} else {
+		// player did not win
+		return false;
 	}
 };
 
 var isGameOver = function () {
-	console.log("turn in isGameOver", turn);
 	if (playerWins()) {
-
 		messages = currentPlayer.name + gameOverWinMsg;
 		return true;
 	} else if (turn === GAME_SIZE) {
@@ -70,7 +72,6 @@ var makeMove = function (squareId) {
 	// update internal squares
 	squares[squareId] = currentPlayer.id;
 	turn++;
-	console.log("makeMoveDOM", turn);
 
 	// check for game over
 	if (isGameOver()) {
@@ -90,14 +91,12 @@ var makeMove = function (squareId) {
 
 // initialize board squares to null
 var setUpBoard = function () {
-	console.log("setUpBoard");
 	for (var i = 0; i < GAME_SIZE; i++) {
 		squares[i] = null;
 	}
 };
 
 var setUpPlayers = function () {
-	console.log("setUpPlayers");
 	player1 = {
 		name: "Player One",
 		id: 1,
@@ -113,15 +112,10 @@ var setUpPlayers = function () {
 };
 
 var setUpGameState = function () {
-	console.log("setUpGameState");
 	currentPlayer = player1;
 	turn = 0;
 };
 
 var startNewGame = function () {
-	console.log("startNewGame");
 	setUpGameState();
 };
-
-// clear game state 
-// reset

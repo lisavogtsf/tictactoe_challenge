@@ -1,19 +1,21 @@
-
+/*
+ * A game of Tic Tac Toe
+ *   -- Lisa Vogt, http://lisavogtsf.github.io/
+ * the game is ready to run as soon as the page loads
+ * turns alternate between players as they click on squares
+ * the game ends with three in a row or all squares filled
+ */
 
 document.addEventListener('DOMContentLoaded', function (){
 
 	var updateMessagesDOM = function () {
-		console.log("updateMessagesDOM", messages);
 		if (messages) {
 			var element = document.querySelector('#messages h2');
-			console.log("element", element);
 			element.textContent = messages;
 		}
 	};
 
 	var makeMoveDOM = function (squareId) {
-		console.log("makeMoveDOM");
-
 		// update DOM element as played
 		var element = document.querySelector(".square" + squareId);
 		var classes = element.classList;
@@ -29,8 +31,14 @@ document.addEventListener('DOMContentLoaded', function (){
 			// error or game over
 			updateMessagesDOM();
 			// need to visaully suspend the game
-			gameStage = document.querySelector('#game-stage');
+			var gameStage = document.querySelector('#game-stage');
 			gameStage.classList.toggle('game-off');
+			// remove event listeners
+			for (var i = 0; i < GAME_SIZE; i++) {
+				var squareId = '.square' + i;
+				var square = document.querySelector(squareId);
+				square.removeEventListener('click', clickOnSquare);
+			}
 		}
 	};
 
@@ -44,6 +52,11 @@ document.addEventListener('DOMContentLoaded', function (){
 		clickedSquareId = squareClasses[squareClasses.search(/[0-9]/)];
 
 		makeMoveDOM(clickedSquareId);
+	};
+
+	// listener function to reload game
+	var reloadGameDOM = function (e) {
+		startNewGameDOM();
 	};
 
 	var setUpBoardDOM = function () {
@@ -60,6 +73,9 @@ document.addEventListener('DOMContentLoaded', function (){
 			squareId = '.square' + i;
 			square = document.querySelector(squareId);
 			square.addEventListener('click', clickOnSquare);
+			square.classList.remove('played');
+			square.classList.remove('player1');
+			square.classList.remove('player2');
 		}
 
 		// visually indicate game has started
@@ -74,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function (){
 	};
 
 	var startNewGameDOM = function () {
-		console.log("startNewGameDOM");
 		updateMessagesDOM();
 		setUpPlayersDOM();
 		setUpBoardDOM();
@@ -84,13 +99,5 @@ document.addEventListener('DOMContentLoaded', function (){
 
 	// new game starts once DOM content has loaded
 	startNewGameDOM();
-
-	// var playButton = document.querySelector('#play');
-	// playButton.addEventListener()
-	// // clear board
-	// // remove listeners
-	// // remove played class, player 1/2
-	// // add game-off
-
 	
 });
